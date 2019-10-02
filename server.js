@@ -68,4 +68,29 @@ app.post('/login', function (req, res) {
 });
 
 
+app.post('/viewAllUsers', (req, res) => {
+
+    console.log(req);
+    var obj = req.body;
+    console.log(obj);
+    User.find({
+      
+    }, async function (err, user) {
+        if (err) return res.status(500).send({
+            message: err.toString()
+        });
+        if (!user) return res.status(400).send({
+            message: 'No Users Exist'
+        });
+
+        if (user) {
+            res.status(200).send({
+                data: user
+            });
+        }
+    });
+
+});
+
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

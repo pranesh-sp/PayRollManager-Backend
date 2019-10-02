@@ -42,6 +42,20 @@ var UserSchema = new mongoose.Schema({
         type: String,
         required: true,
         
+    },
+    rating: {
+        type: Number
+        
+        
+    },
+    Rank: {
+        type: Number,
+        unique:true 
+    },
+    Pay: {
+        type: Number
+        
+        
     }
 
 });
