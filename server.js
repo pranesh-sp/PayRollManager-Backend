@@ -60,7 +60,8 @@ app.post('/login', function (req, res) {
 
         res.status(200).send({
             auth: true,
-            token: token
+            token: token,
+            employer:user.employer
         });
     });
 
