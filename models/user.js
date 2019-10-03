@@ -25,8 +25,8 @@ var UserSchema = new mongoose.Schema({
     },
     phone: {
         type: Number,
-        required: true,
-        unique: true
+        required: true
+
     },
     joindate: {
         type: String,

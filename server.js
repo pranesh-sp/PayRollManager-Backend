@@ -61,7 +61,7 @@ app.post('/login', function (req, res) {
         res.status(200).send({
             auth: true,
             token: token,
-            employer:user.employer
+            employer: user.employer
         });
     });
 
@@ -74,7 +74,7 @@ app.post('/viewAllUsers', (req, res) => {
     var obj = req.body;
     console.log(obj);
     User.find({
-      
+
     }, async function (err, user) {
         if (err) return res.status(500).send({
             message: err.toString()
@@ -88,6 +88,44 @@ app.post('/viewAllUsers', (req, res) => {
                 data: user
             });
         }
+    });
+
+});
+
+app.post('/editUser', (req, res) => {
+
+    console.log(req);
+    var obj = req.body;
+    console.log(obj);
+    User.findOne({
+        emp_id: req.body.emp_id
+        
+    }, async function (err,user) {
+        if (!user) return res.status(400).send({
+            message: 'Document Doesnt Exist'
+        });
+
+        if (err) return res.status(500).send({
+            message: err.toString()
+        });
+       
+        user.remove();
+
+        User.create(obj).then((doc) => {
+            console.log(doc);
+            res.status(200).send({
+                message: "User Details Updated",
+                data: doc
+            });
+        }).catch((err) => {
+            res.status(500).send({
+                message: err.toString()
+            });
+           
+        })
+       
+        
+
     });
 
 });
