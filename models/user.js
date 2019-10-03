@@ -48,11 +48,11 @@ var UserSchema = new mongoose.Schema({
         
         
     },
-    Rank: {
+    rank: {
         type: Number,
         unique:true 
     },
-    Pay: {
+    pay: {
         type: Number
         
         

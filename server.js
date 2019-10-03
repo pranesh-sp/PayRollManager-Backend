@@ -130,5 +130,63 @@ app.post('/editUser', (req, res) => {
 
 });
 
+app.post('/setRating', function (req, res) {
+    User.findOneAndUpdate({
+        emp_id: req.body.emp_id
+    }, { rating: req.body.rating }, {new:true} ,  async function (err, user) {
+        if (err) return res.status(500).send({
+            message: err.toString()
+        });
+        if (!user) return res.status(400).send({
+            message: 'User Doesnt Exist'
+        });
+
+            res.status(200).send({
+            message:"Rating Set for :" + user.emp_id,
+            data:user
+        });
+    }); 
+   
+});
+
+app.post('/setPay', function (req, res) {
+    User.findOneAndUpdate({
+        emp_id: req.body.emp_id
+    }, { pay: req.body.pay }, {new:true} ,  async function (err, user) {
+        if (err) return res.status(500).send({
+            message: err.toString()
+        });
+        if (!user) return res.status(400).send({
+            message: 'User Doesnt Exist'
+        });
+
+            res.status(200).send({
+            message:"Pay Set for :" + user.emp_id,
+            data:user
+        });
+    }); 
+   
+});
+
+app.post('/setRank', function (req, res) {
+    User.findOneAndUpdate({
+        emp_id: req.body.emp_id
+    }, { rank: req.body.rank }, {new:true} ,  async function (err, user) {
+        if (err) return res.status(500).send({
+            message: err.toString()
+        });
+        if (!user) return res.status(400).send({
+            message: 'User Doesnt Exist'
+        });
+
+            res.status(200).send({
+            message:"Rank Set for :" + user.emp_id,
+            data:user
+        });
+    }); 
+   
+});
+
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
